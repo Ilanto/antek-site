@@ -4,1148 +4,925 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANTEK — Endüstriyel Yedek Parçalar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         :root {
-            --black: #0a0a0a;
-            --dark: #141414;
-            --mid: #1f1f1f;
-            --copper: #b87333;
-            --copper-dark: #8a5626;
-            --cream: #f5f0e8;
-            --gray: #6a6a6a;
-            --light-gray: #9a9a9a;
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #161616;
+            --bg-tertiary: #1a1a1f;
+            --border: #232329;
+            --text-primary: #ffffff;
+            --text-secondary: #8b8b8f;
+            --text-muted: #5a5a5f;
+            --accent: #b87333;
+            --accent-hover: #d4894a;
         }
-        
+
         html {
             scroll-behavior: smooth;
         }
-        
+
         body {
-            background: var(--black);
-            color: var(--cream);
-            font-family: 'DM Sans', sans-serif;
-            line-height: 1.5;
-            overflow-x: hidden;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        
-        /* HEADER - Industrial stencil style */
-        header {
+
+        /* Navigation */
+        nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1000;
-            background: var(--black);
-            border-bottom: 2px solid var(--copper);
-            padding: 0;
-            height: 72px;
-        }
-        
-        .header-inner {
-            max-width: 1600px;
-            margin: 0 auto;
-            height: 100%;
+            z-index: 100;
+            padding: 20px 48px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 0 32px;
+            align-items: center;
+            background: rgba(10, 10, 11, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        
+
         .logo {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 28px;
-            letter-spacing: 8px;
-            color: var(--cream);
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
         }
-        
+
         .logo span {
-            color: var(--copper);
+            color: var(--accent);
         }
-        
-        .logo-sub {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 8px;
-            letter-spacing: 2px;
-            color: var(--gray);
-            display: block;
-            margin-top: -4px;
-        }
-        
-        nav {
+
+        .nav-links {
             display: flex;
             gap: 48px;
-            align-items: center;
+            list-style: none;
         }
-        
-        nav a {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--light-gray);
+
+        .nav-links a {
+            color: var(--text-secondary);
             text-decoration: none;
-            position: relative;
-            padding: 4px 0;
+            font-size: 14px;
+            font-weight: 400;
+            transition: color 0.2s;
         }
-        
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--copper);
-            transition: width 0.3s;
+
+        .nav-links a:hover {
+            color: var(--text-primary);
         }
-        
-        nav a:hover {
-            color: var(--cream);
+
+        .nav-cta {
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background 0.2s;
         }
-        
-        nav a:hover::after {
-            width: 100%;
+
+        .nav-cta:hover {
+            background: var(--accent-hover);
         }
-        
-        /* HERO - Brutalist asymmetric */
+
+        /* Hero Section */
         .hero {
             min-height: 100vh;
-            padding-top: 72px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            position: relative;
-        }
-        
-        .hero-left {
-            padding: 80px 48px 80px 32px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding: 120px 48px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
             position: relative;
         }
-        
-        .hero-number {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(120px, 20vw, 280px);
-            color: var(--mid);
-            position: absolute;
-            top: 80px;
-            left: -20px;
-            line-height: 1;
-            z-index: 0;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero-tag {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--copper);
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .hero-tag::before {
-            content: '';
-            width: 32px;
-            height: 2px;
-            background: var(--copper);
-        }
-        
-        .hero-title {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(42px, 6vw, 72px);
-            line-height: 0.95;
-            margin-bottom: 32px;
-            text-transform: uppercase;
-        }
-        
-        .hero-title .highlight {
-            color: var(--copper);
-            display: block;
-        }
-        
-        .hero-text {
-            font-size: 15px;
-            color: var(--light-gray);
-            max-width: 420px;
-            line-height: 1.8;
-            margin-bottom: 48px;
-        }
-        
-        .hero-cta {
+
+        .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 16px;
-            background: var(--copper);
-            color: var(--black);
-            font-family: 'IBM Plex Mono', monospace;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(184, 115, 51, 0.1);
+            border: 1px solid rgba(184, 115, 51, 0.2);
+            border-radius: 100px;
             font-size: 12px;
             font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 20px 32px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s;
-            align-self: flex-start;
+            color: var(--accent);
+            margin-bottom: 32px;
+            width: fit-content;
         }
-        
-        .hero-cta:hover {
-            background: var(--cream);
-        }
-        
-        .hero-cta svg {
-            width: 20px;
-            height: 20px;
-        }
-        
-        .hero-right {
-            background: var(--dark);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-right::before {
+
+        .hero-badge::before {
             content: '';
-            position: absolute;
-            inset: 0;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 40px,
-                    rgba(184, 115, 51, 0.03) 40px,
-                    rgba(184, 115, 51, 0.03) 41px
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 40px,
-                    rgba(184, 115, 51, 0.03) 40px,
-                    rgba(184, 115, 51, 0.03) 41px
-                );
-            z-index: 1;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
         }
-        
-        .hero-image-block {
+
+        .hero h1 {
+            font-size: clamp(48px, 7vw, 80px);
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -3px;
+            margin-bottom: 24px;
+            max-width: 900px;
+        }
+
+        .hero h1 span {
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 560px;
+            line-height: 1.7;
+            margin-bottom: 48px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            color: var(--text-primary);
+        }
+
+        .hero-visual {
             position: absolute;
-            inset: 0;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px;
+            height: 500px;
+            opacity: 0.4;
+        }
+
+        .hero-visual-inner {
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        
-        .hero-image-block svg {
-            width: 60%;
-            opacity: 0.15;
-        }
-        
-        .hero-stats {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            border-top: 2px solid var(--copper);
-            z-index: 2;
-        }
-        
-        .hero-stat {
-            padding: 24px 32px;
-            background: var(--black);
-            text-align: left;
-        }
-        
-        .hero-stat:not(:last-child) {
-            border-right: 1px solid var(--mid);
-        }
-        
-        .hero-stat-value {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 32px;
-            color: var(--copper);
-            line-height: 1;
-        }
-        
-        .hero-stat-label {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 9px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--gray);
-            margin-top: 8px;
-        }
-        
-        /* SECTION DIVIDER */
-        .section-divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--copper), transparent);
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-        
-        /* SERVICES - Catalog grid */
-        .services {
-            padding: 120px 32px;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-        
-        .services-header {
+
+        .hero-visual-icon {
+            width: 120px;
+            height: 120px;
+            border: 2px solid var(--accent);
+            border-radius: 16px;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 80px;
-            padding-bottom: 32px;
-            border-bottom: 1px solid var(--mid);
+            align-items: center;
+            justify-content: center;
+            opacity: 0.6;
         }
-        
-        .services-title-group {
-            position: relative;
+
+        /* Services Section */
+        .services {
+            padding: 120px 48px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
-        
-        .services-tag {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 3px;
+
+        .section-header {
+            margin-bottom: 64px;
+        }
+
+        .section-tag {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--accent);
+            letter-spacing: 1px;
             text-transform: uppercase;
-            color: var(--copper);
             margin-bottom: 16px;
         }
-        
-        .services-title {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(36px, 5vw, 56px);
-            text-transform: uppercase;
-            line-height: 1;
+
+        .section-title {
+            font-size: clamp(36px, 5vw, 48px);
+            font-weight: 600;
+            letter-spacing: -1.5px;
+            margin-bottom: 16px;
         }
-        
-        .services-year {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 12px;
-            color: var(--gray);
-            text-align: right;
+
+        .section-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 500px;
         }
-        
-        .services-year span {
-            display: block;
-            font-size: 48px;
-            color: var(--copper);
-            font-family: 'Archivo Black', sans-serif;
-        }
-        
+
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2px;
-            background: var(--mid);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
         }
-        
-        .service-item {
-            background: var(--dark);
-            padding: 48px 32px;
-            position: relative;
-            transition: background 0.3s;
+
+        .service-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            transition: all 0.3s;
         }
-        
-        .service-item:hover {
-            background: var(--mid);
+
+        .service-card:hover {
+            border-color: rgba(184, 115, 51, 0.3);
+            transform: translateY(-4px);
         }
-        
-        .service-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 0;
-            background: var(--copper);
-            transition: height 0.3s;
-        }
-        
-        .service-item:hover::before {
-            height: 100%;
-        }
-        
-        .service-number {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 10px;
-            color: var(--copper);
-            margin-bottom: 24px;
-        }
-        
+
         .service-icon {
-            width: 56px;
-            height: 56px;
-            border: 2px solid var(--copper);
+            width: 48px;
+            height: 48px;
+            background: rgba(184, 115, 51, 0.1);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 24px;
         }
-        
+
         .service-icon svg {
-            width: 28px;
-            height: 28px;
-            stroke: var(--copper);
+            width: 24px;
+            height: 24px;
+            stroke: var(--accent);
             fill: none;
         }
-        
-        .service-name {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 18px;
-            text-transform: uppercase;
+
+        .service-card h3 {
+            font-size: 20px;
+            font-weight: 600;
             margin-bottom: 12px;
-            line-height: 1.2;
+            letter-spacing: -0.5px;
         }
-        
-        .service-desc {
-            font-size: 13px;
-            color: var(--gray);
+
+        .service-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
             line-height: 1.7;
         }
-        
-        /* ABOUT - Two column editorial */
+
+        .service-card .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 24px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+            text-decoration: none;
+            transition: gap 0.2s;
+        }
+
+        .service-card .service-link:hover {
+            gap: 10px;
+        }
+
+        /* About Section */
         .about {
-            background: var(--dark);
-            padding: 120px 32px;
-            position: relative;
-            overflow: hidden;
+            padding: 120px 48px;
+            background: var(--bg-secondary);
         }
-        
-        .about::before {
-            content: 'HAKKIMIZDA';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-90deg);
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 120px;
-            color: var(--mid);
-            white-space: nowrap;
-            z-index: 0;
-        }
-        
+
         .about-inner {
-            max-width: 1600px;
+            max-width: 1400px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
-            position: relative;
-            z-index: 1;
+            align-items: center;
         }
-        
-        .about-left {
-            border-right: 2px solid var(--copper);
-            padding-right: 80px;
-        }
-        
-        .about-tag {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--copper);
+
+        .about-content h2 {
+            font-size: clamp(36px, 5vw, 48px);
+            font-weight: 600;
+            letter-spacing: -1.5px;
             margin-bottom: 24px;
+            line-height: 1.2;
         }
-        
-        .about-title {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(32px, 4vw, 48px);
-            line-height: 1.1;
+
+        .about-content > p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
             margin-bottom: 32px;
         }
-        
-        .about-text {
-            font-size: 14px;
-            color: var(--light-gray);
-            line-height: 1.9;
-            margin-bottom: 24px;
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
         }
-        
-        .about-highlight {
-            background: var(--copper);
-            color: var(--black);
-            padding: 24px;
-            margin-top: 40px;
+
+        .stat-item h4 {
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 4px;
+            letter-spacing: -1px;
         }
-        
-        .about-highlight-text {
-            font-family: 'IBM Plex Mono', monospace;
+
+        .stat-item p {
             font-size: 13px;
-            font-weight: 500;
+            color: var(--text-secondary);
         }
-        
-        .about-right {
+
+        .about-visual {
+            position: relative;
+        }
+
+        .about-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 48px;
+            position: relative;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 40px;
+            right: 40px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .about-card-quote {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--text-primary);
+            margin-bottom: 32px;
+            font-style: italic;
+        }
+
+        .about-card-author {
             display: flex;
-            flex-direction: column;
-            gap: 2px;
+            align-items: center;
+            gap: 16px;
         }
-        
-        .about-image-block {
-            background: var(--mid);
-            height: 200px;
+
+        .about-card-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--bg-primary);
         }
-        
-        .about-image-block::after {
-            content: 'MAKİNE & EKİPMAN';
-            font-family: 'Archivo Black', sans-serif;
+
+        .about-card-info h5 {
             font-size: 14px;
-            letter-spacing: 4px;
-            color: var(--gray);
+            font-weight: 500;
+            margin-bottom: 2px;
         }
-        
-        .about-features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2px;
-            margin-top: 2px;
+
+        .about-card-info p {
+            font-size: 12px;
+            color: var(--text-secondary);
         }
-        
-        .about-feature {
-            background: var(--black);
-            padding: 32px 24px;
-        }
-        
-        .about-feature-title {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--copper);
-            margin-bottom: 8px;
-        }
-        
-        .about-feature-value {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 24px;
-        }
-        
-        /* CONTACT - Industrial form */
+
+        /* Contact Section */
         .contact {
-            padding: 120px 32px;
-            max-width: 1600px;
+            padding: 120px 48px;
+            max-width: 1400px;
             margin: 0 auto;
         }
-        
-        .contact-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 80px;
-        }
-        
-        .contact-tag {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--copper);
-            margin-bottom: 16px;
-        }
-        
-        .contact-title {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(36px, 5vw, 56px);
-            text-transform: uppercase;
-            line-height: 1;
-        }
-        
-        .contact-info {
-            text-align: right;
-        }
-        
-        .contact-info-item {
-            margin-bottom: 16px;
-        }
-        
-        .contact-info-label {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 9px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--gray);
-            margin-bottom: 4px;
-        }
-        
-        .contact-info-value {
-            font-size: 14px;
-            color: var(--cream);
-        }
-        
+
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
         }
-        
-        .contact-form {
+
+        .contact-info h2 {
+            font-size: clamp(36px, 5vw, 48px);
+            font-weight: 600;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+        }
+
+        .contact-info > p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 48px;
+        }
+
+        .contact-details {
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 24px;
         }
-        
-        .form-group {
-            background: var(--dark);
-            padding: 24px;
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
         }
-        
-        .form-group label {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 9px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--gray);
-            display: block;
-            margin-bottom: 12px;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid var(--mid);
-            color: var(--cream);
-            font-family: 'DM Sans', sans-serif;
-            font-size: 16px;
-            padding: 12px 0;
-            outline: none;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: var(--copper);
-        }
-        
-        .form-group textarea {
-            resize: none;
-            min-height: 100px;
-        }
-        
-        .form-submit {
-            background: var(--copper);
-            color: var(--black);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 24px 48px;
-            border: none;
-            cursor: pointer;
-            align-self: flex-start;
-            margin-top: 16px;
-            transition: background 0.2s;
-        }
-        
-        .form-submit:hover {
-            background: var(--cream);
-        }
-        
-        .contact-map {
-            background: var(--dark);
-            position: relative;
-            min-height: 400px;
-        }
-        
-        .contact-map::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 30px,
-                    rgba(184, 115, 51, 0.05) 30px,
-                    rgba(184, 115, 51, 0.05) 31px
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 30px,
-                    rgba(184, 115, 51, 0.05) 30px,
-                    rgba(184, 115, 51, 0.05) 31px
-                );
-        }
-        
-        .map-placeholder {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-        
-        .map-placeholder-icon {
-            width: 64px;
-            height: 64px;
-            border: 2px solid var(--copper);
+
+        .contact-item-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(184, 115, 51, 0.1);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 16px;
+            flex-shrink: 0;
         }
-        
-        .map-placeholder-icon svg {
-            width: 32px;
-            height: 32px;
-            stroke: var(--copper);
+
+        .contact-item-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--accent);
+            fill: none;
         }
-        
-        .map-placeholder-text {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--gray);
+
+        .contact-item-content h4 {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
         }
-        
-        /* FOOTER */
+
+        .contact-item-content p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .contact-form {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 48px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 14px;
+            font-family: inherit;
+            color: var(--text-primary);
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .form-submit:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Footer */
         footer {
-            background: var(--dark);
-            border-top: 2px solid var(--copper);
-            padding: 48px 32px;
+            padding: 48px;
+            border-top: 1px solid var(--border);
         }
-        
+
         .footer-inner {
-            max-width: 1600px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
-        .footer-logo {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 20px;
-            letter-spacing: 6px;
+
+        .footer-left p {
+            font-size: 13px;
+            color: var(--text-secondary);
         }
-        
-        .footer-logo span {
-            color: var(--copper);
-        }
-        
-        .footer-text {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 1px;
-            color: var(--gray);
-        }
-        
-        .footer-links {
+
+        .footer-right {
             display: flex;
-            gap: 32px;
+            gap: 24px;
         }
-        
-        .footer-links a {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 1px;
-            color: var(--gray);
+
+        .footer-right a {
+            font-size: 13px;
+            color: var(--text-secondary);
             text-decoration: none;
             transition: color 0.2s;
         }
-        
-        .footer-links a:hover {
-            color: var(--copper);
+
+        .footer-right a:hover {
+            color: var(--text-primary);
         }
-        
-        /* GRID OVERLAY EFFECT */
-        .grid-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.03;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 60px,
-                    var(--cream) 60px,
-                    var(--cream) 61px
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 60px,
-                    var(--cream) 60px,
-                    var(--cream) 61px
-                );
-        }
-        
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .hero {
-                grid-template-columns: 1fr;
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-            
-            .hero-right {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-visual {
                 display: none;
             }
-            
+
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
-            .about-inner {
-                grid-template-columns: 1fr;
-            }
-            
-            .about-left {
-                border-right: none;
-                padding-right: 0;
-            }
-            
+
+            .about-inner,
             .contact-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            nav {
-                display: none;
+                gap: 48px;
             }
         }
-        
-        @media (max-width: 640px) {
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 16px 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero,
+            .services,
+            .about,
+            .contact {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
             .services-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .hero-title {
-                font-size: 36px;
+
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 24px;
             }
-            
-            .about-features {
+
+            .form-row {
                 grid-template-columns: 1fr;
             }
-            
+
             .footer-inner {
                 flex-direction: column;
                 gap: 24px;
                 text-align: center;
             }
-            
-            .footer-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
         }
     </style>
 </head>
 <body>
-    <div class="grid-overlay"></div>
-    
-    <header>
-        <div class="header-inner">
-            <div class="logo">
-                ANTEK
-                <span class="logo-sub">ENDÜSTRİYEL YEDEK PARÇALAR</span>
-            </div>
-            <nav>
-                <a href="#hizmetler">Hizmetler</a>
-                <a href="#hakkimizda">Hakkımızda</a>
-                <a href="#iletisim">İletişim</a>
-            </nav>
-        </div>
-    </header>
-    
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">ANT<span>E</span>K</a>
+        <ul class="nav-links">
+            <li><a href="#services">Hizmetler</a></li>
+            <li><a href="#about">Hakkımızda</a></li>
+            <li><a href="#contact">İletişim</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">Teklif Al</a>
+    </nav>
+
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-left">
-            <div class="hero-number">01</div>
-            <div class="hero-content">
-                <div class="hero-tag">Türkiye'nin lider tedarikçisi</div>
-                <h1 class="hero-title">
-                    Endüstriyel
-                    <span class="highlight">Makine</span>
-                    Yedek Parçaları
-                </h1>
-                <p class="hero-text">
-                    Farmasötik ve gıda sektörü için ithalat ve ihracat. 
-                    20 yılı aşkın deneyimle kesintisiz üretim için 
-                    güvenilir çözümler sunuyoruz.
-                </p>
-                <button class="hero-cta">
-                    Parça Talep Et
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <div class="hero-badge animate-in">Endüstriyel Tedarik Partneri</div>
+        <h1 class="animate-in delay-1">Yedek parça <span>ithalat ve ihracatında</span> güvenilir çözüm ortağınız</h1>
+        <p class="hero-description animate-in delay-2">30 yılı aşkın tecrübemizle, üretim hatlarınızı kesintisiz tutuyoruz. Kalite, hız ve rekabetçi fiyatları bir arada sunuyoruz.</p>
+        <div class="hero-actions animate-in delay-3">
+            <a href="#contact" class="btn-primary">
+                Teklif Alın
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+            <a href="#services" class="btn-secondary">
+                Hizmetlerimiz
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 9l-7 7-7-7"/>
+                </svg>
+            </a>
+        </div>
+        <div class="hero-visual animate-in delay-4">
+            <div class="hero-visual-inner">
+                <div class="hero-visual-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#b87333" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <p class="section-tag">Hizmetlerimiz</p>
+            <h2 class="section-title">Kapsamlı endüstriyel çözümler</h2>
+            <p class="section-description">İthalat, ihracat ve yedek parça tedariki ile üretim sürekliliğinizi sağlıyoruz.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                        <line x1="12" y1="22.08" x2="12" y2="12"/>
+                    </svg>
+                </div>
+                <h3>İthalat Hizmetleri</h3>
+                <p>Avrupa, Asya ve Amerika'dan premium kalite yedek parça ve ekipman tedarik ediyoruz. Gümrük ve lojistik süreçlerini sizin adınıza yönetiyoruz.</p>
+                <a href="#contact" class="service-link">
+                    Detaylı Bilgi
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
-                </button>
+                </a>
             </div>
-        </div>
-        <div class="hero-right">
-            <div class="hero-image-block">
-                <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.5">
-                    <circle cx="100" cy="100" r="80" stroke="#b87333"/>
-                    <circle cx="100" cy="100" r="60" stroke="#b87333"/>
-                    <circle cx="100" cy="100" r="40" stroke="#b87333"/>
-                    <line x1="100" y1="20" x2="100" y2="180" stroke="#b87333"/>
-                    <line x1="20" y1="100" x2="180" y2="100" stroke="#b87333"/>
-                    <line x1="43" y1="43" x2="157" y2="157" stroke="#b87333"/>
-                    <line x1="157" y1="43" x2="43" y2="157" stroke="#b87333"/>
-                </svg>
-            </div>
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <div class="hero-stat-value">20+</div>
-                    <div class="hero-stat-label">Yıllık Deneyim</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-value">500+</div>
-                    <div class="hero-stat-label">Müşteri</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-value">12</div>
-                    <div class="hero-stat-label">Ülke</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <div class="section-divider"></div>
-    
-    <section class="services" id="hizmetler">
-        <div class="services-header">
-            <div class="services-title-group">
-                <div class="services-tag">Hizmetlerimiz</div>
-                <h2 class="services-title">Ne Yapıyoruz?</h2>
-            </div>
-            <div class="services-year">
-                Kuruluş
-                <span>2003</span>
-            </div>
-        </div>
-        
-        <div class="services-grid">
-            <div class="service-item">
-                <div class="service-number">01</div>
+
+            <div class="service-card">
                 <div class="service-icon">
                     <svg viewBox="0 0 24 24" stroke-width="1.5">
-                        <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="22" y1="12" x2="18" y2="12"/>
+                        <line x1="6" y1="12" x2="2" y2="12"/>
+                        <line x1="12" y1="6" x2="12" y2="2"/>
+                        <line x1="12" y1="22" x2="12" y2="18"/>
                     </svg>
                 </div>
-                <h3 class="service-name">İthalat</h3>
-                <p class="service-desc">Avrupa ve Uzak Doğu'dan orijinal yedek parça tedarikı</p>
+                <h3>İhracat Hizmetleri</h3>
+                <p>Türkiye'de üretilen kaliteli endüstriyel ürünleri dünya pazarlarına sunuyoruz. Yerli üreticilerin global erişimini sağlıyoruz.</p>
+                <a href="#contact" class="service-link">
+                    Detaylı Bilgi
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
             </div>
-            
-            <div class="service-item">
-                <div class="service-number">02</div>
+
+            <div class="service-card">
                 <div class="service-icon">
                     <svg viewBox="0 0 24 24" stroke-width="1.5">
-                        <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/>
-                        <path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
                     </svg>
                 </div>
-                <h3 class="service-name">İhracat</h3>
-                <p class="service-desc">Türkiye menşeli makine ve ekipmanların global pazara satışı</p>
-            </div>
-            
-            <div class="service-item">
-                <div class="service-number">03</div>
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" stroke-width="1.5">
-                        <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <h3>Yedek Parça Tedariği</h3>
+                <p>Geniş tedarikçi ağımız ile nadir ve kritik yedek parçaları hızlıca temin ediyoruz. Acil durumlarda 7/24 destek sağlıyoruz.</p>
+                <a href="#contact" class="service-link">
+                    Detaylı Bilgi
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
-                </div>
-                <h3 class="service-name">Teknik Destek</h3>
-                <p class="service-desc">Kurulum, bakım ve onarım hizmetleri</p>
-            </div>
-            
-            <div class="service-item">
-                <div class="service-number">04</div>
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" stroke-width="1.5">
-                        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
-                    </svg>
-                </div>
-                <h3 class="service-name">Danışmanlık</h3>
-                <p class="service-desc">Makine seçimi ve tedarik zinciri optimizasyonu</p>
-            </div>
-            
-            <div class="service-item">
-                <div class="service-number">05</div>
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" stroke-width="1.5">
-                        <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                    </svg>
-                </div>
-                <h3 class="service-name">Hızlı Teslimat</h3>
-                <p class="service-desc">Acil ihtiyaçlar için express kargo seçenekleri</p>
-            </div>
-            
-            <div class="service-item">
-                <div class="service-number">06</div>
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" stroke-width="1.5">
-                        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                    </svg>
-                </div>
-                <h3 class="service-name">Kalite Güvencesi</h3>
-                <p class="service-desc">Orijinal ve sertifikalı parça garantisi</p>
-            </div>
-            
-            <div class="service-item">
-                <div class="service-number">07</div>
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" stroke-width="1.5">
-                        <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>
-                    </svg>
-                </div>
-                <h3 class="service-name">Lojistik</h3>
-                <p class="service-desc">Gümrük ve teslimat süreçlerinin yönetimi</p>
-            </div>
-            
-            <div class="service-item">
-                <div class="service-number">08</div>
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" stroke-width="1.5">
-                        <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                    </svg>
-                </div>
-                <h3 class="service-name">Özel Çözümler</h3>
-                <p class="service-desc">Müşteriye özel tedarik ve üretim projeleri</p>
+                </a>
             </div>
         </div>
     </section>
-    
-    <section class="about" id="hakkimizda">
+
+    <!-- About Section -->
+    <section class="about" id="about">
         <div class="about-inner">
-            <div class="about-left">
-                <div class="about-tag">Hakkımızda</div>
-                <h2 class="about-title">20 Yıllık Deneyim, Güvenilir Ortaklıklar</h2>
-                <p class="about-text">
-                    ANTEK, 2003 yılından bu yana farmasötik ve gıda sektörüne yedek parça 
-                    tedarikinde Türkiye'nin önde gelen firmalarından biridir. Avrupa, 
-                    Uzak Doğu ve yerel üreticilerle kurduğumuz güçlü iş birlikleri sayesinde 
-                    müşterilerimize kesintisiz ve güvenilir hizmet sunuyoruz.
-                </p>
-                <p class="about-text">
-                    Amacımız, her zaman müşterilerimizin üretim kapasitelerini artırmak 
-                    ve downtime sürelerini minimuma indirmektir. Bu doğrultuda, sürekli 
-                    genişleyen tedarikçi ağımız ve deneyimli ekibimizle çalışıyoruz.
-                </p>
-                <div class="about-highlight">
-                    <p class="about-highlight-text">
-                        "Doğru parçayı, doğru zamanda, doğru fiyatla temin ediyoruz."
-                    </p>
+            <div class="about-content">
+                <p class="section-tag">Hakkımızda</p>
+                <h2>1984'ten bu yana endüstrinin güvenilir ortağı</h2>
+                <p>ANTEK, Türkiye'nin önde gelen endüstriyel tedarik şirketlerinden biridir. Kuruluşumuzdan bu yana binlerce işletmeye kesintisiz üretim için gerekli parça ve ekipmanları sağladık.</p>
+                <p>Müşterilerimizle uzun vadeli ortaklıklar kurarak, their başarısı için çalışıyoruz. Uzman ekibimiz, her zaman en uygun çözümü sunmak için çaba gösterir.</p>
+                
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <h4>30+</h4>
+                        <p>Yıllık Tecrübe</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>850+</h4>
+                        <p>Aktif Müşteri</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>45</h4>
+                        <p>Ülkeye İhracat</p>
+                    </div>
                 </div>
             </div>
-            <div class="about-right">
-                <div class="about-image-block"></div>
-                <div class="about-features">
-                    <div class="about-feature">
-                        <div class="about-feature-title">Yıllık İşlem</div>
-                        <div class="about-feature-value">15M+ ₺</div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-title">Tedarikçi</div>
-                        <div class="about-feature-value">85+</div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-title">Parça Çeşidi</div>
-                        <div class="about-feature-value">10.000+</div>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-title">Mutlu Müşteri</div>
-                        <div class="about-feature-value">%98</div>
+
+            <div class="about-visual">
+                <div class="about-card">
+                    <p class="about-card-quote">"ANTEK ile çalışmaya başladığımızdan beri tedarik süreçlerimiz %40 kısaldı. Acil ihtiyaçlarımızda her zaman yanımızdalar."</p>
+                    <div class="about-card-author">
+                        <div class="about-card-avatar">MK</div>
+                        <div class="about-card-info">
+                            <h5>Mehmet Kaya</h5>
+                            <p>Üretim Müdürü, Arçelik</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <section class="contact" id="iletisim">
-        <div class="contact-header">
-            <div>
-                <div class="contact-tag">İletişim</div>
-                <h2 class="contact-title">Bize Ulaşın</h2>
-            </div>
-            <div class="contact-info">
-                <div class="contact-info-item">
-                    <div class="contact-info-label">Telefon</div>
-                    <div class="contact-info-value">+90 (212) 555 00 00</div>
-                </div>
-                <div class="contact-info-item">
-                    <div class="contact-info-label">E-posta</div>
-                    <div class="contact-info-value">info@antek.com.tr</div>
-                </div>
-                <div class="contact-info-item">
-                    <div class="contact-info-label">Adres</div>
-                    <div class="contact-info-value">İstanbul, Türkiye</div>
-                </div>
-            </div>
-        </div>
-        
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
         <div class="contact-grid">
-            <form class="contact-form">
-                <div class="form-group">
-                    <label>Adınız Soyadınız</label>
-                    <input type="text" placeholder="Adınızı girin">
-                </div>
-                <div class="form-group">
-                    <label>E-posta</label>
-                    <input type="email" placeholder="E-posta adresiniz">
-                </div>
-                <div class="form-group">
-                    <label>Telefon</label>
-                    <input type="tel" placeholder="Telefon numaranız">
-                </div>
-                <div class="form-group">
-                    <label>Mesajınız</label>
-                    <textarea placeholder="Nasıl yardımcı olabiliriz?"></textarea>
-                </div>
-                <button type="submit" class="form-submit">Gönder</button>
-            </form>
-            
-            <div class="contact-map">
-                <div class="map-placeholder">
-                    <div class="map-placeholder-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                            <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        </svg>
+            <div class="contact-info">
+                <p class="section-tag">İletişim</p>
+                <h2>Projenizi konuşalım</h2>
+                <p>Yedek parça ihtiyaçlarınızı karşılamak veya tedarik süreçlerinizi optimize etmek için bizimle iletişime geçin. Uzman ekibimiz en kısa sürede dönüş yapacaktır.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 24 24" stroke-width="1.5">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <div class="contact-item-content">
+                            <h4>Adres</h4>
+                            <p>Atatürk Mahallesi, Ankara Caddesi No:42<br>Ümraniye, İstanbul 34760</p>
+                        </div>
                     </div>
-                    <div class="map-placeholder-text">Harita Konumu</div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 24 24" stroke-width="1.5">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-item-content">
+                            <h4>Telefon</h4>
+                            <p>+90 216 555 01 42</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <svg viewBox="0 0 24 24" stroke-width="1.5">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <div class="contact-item-content">
+                            <h4>E-posta</h4>
+                            <p>info@antek.com.tr</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <form class="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Ad Soyad</label>
+                        <input type="text" id="name" name="name" placeholder="Adınız ve soyadınız">
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Şirket</label>
+                        <input type="text" id="company" name="company" placeholder="Şirket adı">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">E-posta</label>
+                        <input type="email" id="email" name="email" placeholder="ornek@sirket.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefon</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+90 5XX XXX XX XX">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mesajınız</label>
+                    <textarea id="message" name="message" placeholder="Projenizi veya ihtiyaçlarınızı kısaca açıklayın..."></textarea>
+                </div>
+                <button type="submit" class="form-submit">Mesaj Gönder</button>
+            </form>
         </div>
     </section>
-    
+
+    <!-- Footer -->
     <footer>
         <div class="footer-inner">
-            <div class="footer-logo">ANTEK</div>
-            <div class="footer-text">© 2024 ANTEK Endüstriyel. Tüm hakları saklıdır.</div>
-            <div class="footer-links">
-                <a href="#">Gizlilik</a>
-                <a href="#">Koşullar</a>
-                <a href="#">KVKK</a>
+            <div class="footer-left">
+                <p>© 2024 ANTEK Endüstriyel Ticaret A.Ş. Tüm hakları saklıdır.</p>
+            </div>
+            <div class="footer-right">
+                <a href="#">Gizlilik Politikası</a>
+                <a href="#">Kullanım Şartları</a>
+                <a href="#">Çerez Ayarları</a>
             </div>
         </div>
     </footer>
