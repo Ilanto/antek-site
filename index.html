@@ -3,1363 +3,1151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Antek — Endüstriyel Makine Yedek Parçaları</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <title>ANTEK — Endüstriyel Yedek Parçalar</title>
     <style>
-        *, *::before, *::after {
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap');
+        
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         :root {
-            --bg-primary: #09090b;
-            --bg-secondary: #111113;
-            --bg-tertiary: #18181b;
-            --bg-elevated: #1f1f23;
+            --black: #0a0a0a;
+            --dark: #141414;
+            --mid: #1f1f1f;
             --copper: #b87333;
-            --copper-light: #d4956a;
-            --copper-dim: rgba(184, 115, 51, 0.15);
-            --copper-border: rgba(184, 115, 51, 0.3);
-            --text-primary: #fafafa;
-            --text-secondary: #a1a1aa;
-            --text-tertiary: #71717a;
-            --border-subtle: rgba(255, 255, 255, 0.06);
-            --border-default: rgba(255, 255, 255, 0.1);
+            --copper-dark: #8a5626;
+            --cream: #f5f0e8;
+            --gray: #6a6a6a;
+            --light-gray: #9a9a9a;
         }
-
+        
         html {
             scroll-behavior: smooth;
         }
-
+        
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            background: var(--black);
+            color: var(--cream);
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
         }
-
-        ::selection {
-            background: var(--copper);
-            color: var(--bg-primary);
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* ========== HEADER ========== */
+        
+        /* HEADER - Industrial stencil style */
         header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            height: 64px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 48px;
-            background: rgba(9, 9, 11, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-subtle);
+            background: var(--black);
+            border-bottom: 2px solid var(--copper);
+            padding: 0;
+            height: 72px;
         }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-mark {
-            width: 32px;
-            height: 32px;
-            background: var(--copper);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 11px;
-            color: var(--bg-primary);
-        }
-
-        .logo-text {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        nav {
-            display: flex;
-            gap: 40px;
-        }
-
-        nav a {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            transition: color 0.2s;
-        }
-
-        nav a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-cta {
-            padding: 8px 20px;
-            background: var(--copper);
-            color: var(--bg-primary) !important;
-            font-weight: 600;
-            font-size: 12px;
-            border-radius: 6px;
-            transition: background 0.2s;
-        }
-
-        .nav-cta:hover {
-            background: var(--copper-light);
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            width: 32px;
-            height: 32px;
-            cursor: pointer;
-        }
-
-        .menu-toggle span {
-            display: block;
-            width: 18px;
-            height: 1.5px;
-            background: var(--text-secondary);
-            transition: all 0.2s;
-        }
-
-        /* ========== HERO ========== */
-        .hero {
-            min-height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding-top: 64px;
-        }
-
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 80px 64px;
-            max-width: 680px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 14px;
-            background: var(--copper-dim);
-            border: 1px solid var(--copper-border);
-            border-radius: 100px;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--copper-light);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 32px;
-            width: fit-content;
-        }
-
-        .hero-badge::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--copper);
-            border-radius: 50%;
-        }
-
-        .hero-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(48px, 5.5vw, 72px);
-            font-weight: 700;
-            line-height: 1.05;
-            letter-spacing: -2px;
-            margin-bottom: 24px;
-        }
-
-        .hero-title .accent {
-            color: var(--copper);
-        }
-
-        .hero-desc {
-            font-size: 16px;
-            color: var(--text-secondary);
-            line-height: 1.75;
-            max-width: 520px;
-            margin-bottom: 40px;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 28px;
-            background: var(--copper);
-            color: var(--bg-primary);
-            font-weight: 600;
-            font-size: 13px;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-
-        .btn-primary:hover {
-            background: var(--copper-light);
-            transform: translateY(-1px);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 28px;
-            background: transparent;
-            color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 13px;
-            border: 1px solid var(--border-default);
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--copper-border);
-            color: var(--text-primary);
-        }
-
-        .hero-visual {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-image-wrapper {
-            position: absolute;
-            inset: 0;
-        }
-
-        .hero-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.7);
-        }
-
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to right, var(--bg-primary) 0%, transparent 30%);
-        }
-
-        .hero-stats {
-            position: absolute;
-            bottom: 48px;
-            left: 48px;
-            display: flex;
-            gap: 40px;
-        }
-
-        .hero-stat {
-            text-align: left;
-        }
-
-        .hero-stat-value {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--copper);
-            line-height: 1;
-        }
-
-        .hero-stat-label {
-            font-size: 12px;
-            color: var(--text-tertiary);
-            margin-top: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* ========== LOGOS ========== */
-        .logos {
-            padding: 64px 48px;
-            border-top: 1px solid var(--border-subtle);
-            border-bottom: 1px solid var(--border-subtle);
-            background: var(--bg-secondary);
-        }
-
-        .logos-inner {
-            max-width: 1200px;
+        
+        .header-inner {
+            max-width: 1600px;
             margin: 0 auto;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 40px;
+            padding: 0 32px;
         }
-
-        .logos-label {
-            font-size: 12px;
-            color: var(--text-tertiary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            white-space: nowrap;
+        
+        .logo {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 28px;
+            letter-spacing: 8px;
+            color: var(--cream);
         }
-
-        .logos-grid {
+        
+        .logo span {
+            color: var(--copper);
+        }
+        
+        .logo-sub {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 8px;
+            letter-spacing: 2px;
+            color: var(--gray);
+            display: block;
+            margin-top: -4px;
+        }
+        
+        nav {
             display: flex;
             gap: 48px;
             align-items: center;
         }
-
-        .logos-grid span {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-tertiary);
-            opacity: 0.6;
-            transition: opacity 0.2s;
-        }
-
-        .logos-grid span:hover {
-            opacity: 1;
-            color: var(--text-secondary);
-        }
-
-        /* ========== SERVICES ========== */
-        .services {
-            padding: 128px 48px;
-            background: var(--bg-primary);
-        }
-
-        .services-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            max-width: 560px;
-            margin-bottom: 72px;
-        }
-
-        .section-tag {
+        
+        nav a {
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--copper);
-            margin-bottom: 16px;
-        }
-
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(36px, 4vw, 48px);
-            font-weight: 700;
-            line-height: 1.15;
-            letter-spacing: -1px;
-            margin-bottom: 16px;
-        }
-
-        .section-desc {
-            font-size: 15px;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--border-subtle);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
-            overflow: hidden;
-        }
-
-        .service-card {
-            background: var(--bg-secondary);
-            padding: 40px 32px;
-            transition: background 0.2s;
+            text-transform: uppercase;
+            color: var(--light-gray);
+            text-decoration: none;
             position: relative;
+            padding: 4px 0;
         }
-
-        .service-card:hover {
-            background: var(--bg-tertiary);
-        }
-
-        .service-card::after {
+        
+        nav a::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 32px;
-            right: 32px;
+            left: 0;
+            width: 0;
             height: 2px;
             background: var(--copper);
-            transform: scaleX(0);
-            transition: transform 0.3s;
+            transition: width 0.3s;
         }
-
-        .service-card:hover::after {
-            transform: scaleX(1);
+        
+        nav a:hover {
+            color: var(--cream);
         }
-
-        .service-icon {
-            width: 44px;
-            height: 44px;
-            background: var(--copper-dim);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
+        
+        nav a:hover::after {
+            width: 100%;
         }
-
-        .service-icon svg {
-            width: 20px;
-            height: 20px;
-            stroke: var(--copper);
-        }
-
-        .service-card h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 17px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .service-card p {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.65;
-        }
-
-        /* ========== STATS ========== */
-        .stats {
-            padding: 96px 48px;
-            background: var(--bg-secondary);
-        }
-
-        .stats-inner {
-            max-width: 1200px;
-            margin: 0 auto;
+        
+        /* HERO - Brutalist asymmetric */
+        .hero {
+            min-height: 100vh;
+            padding-top: 72px;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 48px;
-        }
-
-        .stats-item {
-            text-align: center;
-            padding: 32px;
+            grid-template-columns: 1fr 1fr;
             position: relative;
         }
-
-        .stats-item:not(:last-child)::after {
-            content: '';
+        
+        .hero-left {
+            padding: 80px 48px 80px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .hero-number {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(120px, 20vw, 280px);
+            color: var(--mid);
             position: absolute;
-            right: -24px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1px;
-            height: 48px;
-            background: var(--border-default);
-        }
-
-        .stats-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(40px, 5vw, 56px);
-            font-weight: 700;
+            top: 80px;
+            left: -20px;
             line-height: 1;
-            letter-spacing: -2px;
+            z-index: 0;
         }
-
-        .stats-number .accent {
-            color: var(--copper);
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
-
-        .stats-label {
-            font-size: 13px;
-            color: var(--text-tertiary);
-            margin-top: 12px;
+        
+        .hero-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* ========== ABOUT ========== */
-        .about {
-            padding: 128px 48px;
-            background: var(--bg-primary);
-        }
-
-        .about-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 96px;
-            align-items: center;
-        }
-
-        .about-content .section-tag {
-            margin-bottom: 20px;
-        }
-
-        .about-content h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(32px, 3.5vw, 44px);
-            font-weight: 700;
-            line-height: 1.2;
-            letter-spacing: -1px;
-            margin-bottom: 24px;
-        }
-
-        .about-content h2 .accent {
             color: var(--copper);
-        }
-
-        .about-content p {
-            font-size: 15px;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 16px;
-        }
-
-        .about-features {
-            margin-top: 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .about-feature {
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 16px;
-            background: var(--bg-secondary);
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 500;
         }
-
-        .about-feature svg {
-            width: 16px;
-            height: 16px;
-            stroke: var(--copper);
-            flex-shrink: 0;
-        }
-
-        .about-visual {
-            position: relative;
-        }
-
-        .about-image {
-            border-radius: 16px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .about-card {
-            position: absolute;
-            bottom: -32px;
-            left: -32px;
+        
+        .hero-tag::before {
+            content: '';
+            width: 32px;
+            height: 2px;
             background: var(--copper);
-            color: var(--bg-primary);
-            padding: 28px 32px;
-            border-radius: 14px;
-            min-width: 200px;
         }
-
-        .about-card-value {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 40px;
-            font-weight: 700;
-            line-height: 1;
-        }
-
-        .about-card-label {
-            font-size: 12px;
-            font-weight: 600;
+        
+        .hero-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(42px, 6vw, 72px);
+            line-height: 0.95;
+            margin-bottom: 32px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 6px;
-            opacity: 0.8;
         }
-
-        /* ========== CONTACT ========== */
-        .contact {
-            padding: 128px 48px;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-subtle);
-        }
-
-        .contact-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 96px;
-        }
-
-        .contact-info h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(32px, 4vw, 48px);
-            font-weight: 700;
-            line-height: 1.15;
-            letter-spacing: -1.5px;
-            margin-bottom: 20px;
-        }
-
-        .contact-info h2 .accent {
+        
+        .hero-title .highlight {
             color: var(--copper);
+            display: block;
         }
-
-        .contact-info > p {
+        
+        .hero-text {
             font-size: 15px;
-            color: var(--text-secondary);
-            line-height: 1.75;
-            margin-bottom: 48px;
+            color: var(--light-gray);
             max-width: 420px;
+            line-height: 1.8;
+            margin-bottom: 48px;
         }
-
-        .contact-list {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .contact-item {
-            display: flex;
+        
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
             gap: 16px;
-            align-items: flex-start;
+            background: var(--copper);
+            color: var(--black);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 20px 32px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            align-self: flex-start;
         }
-
-        .contact-item-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-subtle);
-            border-radius: 10px;
+        
+        .hero-cta:hover {
+            background: var(--cream);
+        }
+        
+        .hero-cta svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .hero-right {
+            background: var(--dark);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-right::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 40px,
+                    rgba(184, 115, 51, 0.03) 40px,
+                    rgba(184, 115, 51, 0.03) 41px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 40px,
+                    rgba(184, 115, 51, 0.03) 40px,
+                    rgba(184, 115, 51, 0.03) 41px
+                );
+            z-index: 1;
+        }
+        
+        .hero-image-block {
+            position: absolute;
+            inset: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
         }
-
-        .contact-item-icon svg {
-            width: 18px;
-            height: 18px;
-            stroke: var(--copper);
+        
+        .hero-image-block svg {
+            width: 60%;
+            opacity: 0.15;
         }
-
-        .contact-item h4 {
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-            color: var(--text-primary);
+        
+        .hero-stats {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 2px solid var(--copper);
+            z-index: 2;
         }
-
-        .contact-item p,
-        .contact-item a {
-            font-size: 14px;
-            color: var(--text-secondary);
+        
+        .hero-stat {
+            padding: 24px 32px;
+            background: var(--black);
+            text-align: left;
         }
-
-        .contact-item a:hover {
+        
+        .hero-stat:not(:last-child) {
+            border-right: 1px solid var(--mid);
+        }
+        
+        .hero-stat-value {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 32px;
             color: var(--copper);
+            line-height: 1;
         }
-
-        .contact-form-wrapper {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
-            padding: 40px;
+        
+        .hero-stat-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-top: 8px;
         }
-
-        .contact-form h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 8px;
+        
+        /* SECTION DIVIDER */
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--copper), transparent);
+            max-width: 1600px;
+            margin: 0 auto;
         }
-
-        .contact-form > p {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 32px;
+        
+        /* SERVICES - Catalog grid */
+        .services {
+            padding: 120px 32px;
+            max-width: 1600px;
+            margin: 0 auto;
         }
-
-        .form-row {
+        
+        .services-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 80px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--mid);
+        }
+        
+        .services-title-group {
+            position: relative;
+        }
+        
+        .services-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--copper);
+            margin-bottom: 16px;
+        }
+        
+        .services-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(36px, 5vw, 56px);
+            text-transform: uppercase;
+            line-height: 1;
+        }
+        
+        .services-year {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--gray);
+            text-align: right;
+        }
+        
+        .services-year span {
+            display: block;
+            font-size: 48px;
+            color: var(--copper);
+            font-family: 'Archivo Black', sans-serif;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            background: var(--mid);
+        }
+        
+        .service-item {
+            background: var(--dark);
+            padding: 48px 32px;
+            position: relative;
+            transition: background 0.3s;
+        }
+        
+        .service-item:hover {
+            background: var(--mid);
+        }
+        
+        .service-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--copper);
+            transition: height 0.3s;
+        }
+        
+        .service-item:hover::before {
+            height: 100%;
+        }
+        
+        .service-number {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--copper);
+            margin-bottom: 24px;
+        }
+        
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            border: 2px solid var(--copper);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        
+        .service-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--copper);
+            fill: none;
+        }
+        
+        .service-name {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 18px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        
+        .service-desc {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+        
+        /* ABOUT - Two column editorial */
+        .about {
+            background: var(--dark);
+            padding: 120px 32px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about::before {
+            content: 'HAKKIMIZDA';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-90deg);
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 120px;
+            color: var(--mid);
+            white-space: nowrap;
+            z-index: 0;
+        }
+        
+        .about-inner {
+            max-width: 1600px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            gap: 80px;
+            position: relative;
+            z-index: 1;
         }
-
-        .form-group {
-            margin-bottom: 20px;
+        
+        .about-left {
+            border-right: 2px solid var(--copper);
+            padding-right: 80px;
         }
-
-        .form-group label {
-            display: block;
-            font-size: 12px;
+        
+        .about-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--copper);
+            margin-bottom: 24px;
+        }
+        
+        .about-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(32px, 4vw, 48px);
+            line-height: 1.1;
+            margin-bottom: 32px;
+        }
+        
+        .about-text {
+            font-size: 14px;
+            color: var(--light-gray);
+            line-height: 1.9;
+            margin-bottom: 24px;
+        }
+        
+        .about-highlight {
+            background: var(--copper);
+            color: var(--black);
+            padding: 24px;
+            margin-top: 40px;
+        }
+        
+        .about-highlight-text {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
             font-weight: 500;
-            color: var(--text-secondary);
+        }
+        
+        .about-right {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .about-image-block {
+            background: var(--mid);
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .about-image-block::after {
+            content: 'MAKİNE & EKİPMAN';
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 14px;
+            letter-spacing: 4px;
+            color: var(--gray);
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            margin-top: 2px;
+        }
+        
+        .about-feature {
+            background: var(--black);
+            padding: 32px 24px;
+        }
+        
+        .about-feature-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--copper);
             margin-bottom: 8px;
         }
-
+        
+        .about-feature-value {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 24px;
+        }
+        
+        /* CONTACT - Industrial form */
+        .contact {
+            padding: 120px 32px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .contact-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 80px;
+        }
+        
+        .contact-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--copper);
+            margin-bottom: 16px;
+        }
+        
+        .contact-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(36px, 5vw, 56px);
+            text-transform: uppercase;
+            line-height: 1;
+        }
+        
+        .contact-info {
+            text-align: right;
+        }
+        
+        .contact-info-item {
+            margin-bottom: 16px;
+        }
+        
+        .contact-info-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 4px;
+        }
+        
+        .contact-info-value {
+            font-size: 14px;
+            color: var(--cream);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .form-group {
+            background: var(--dark);
+            padding: 24px;
+        }
+        
+        .form-group label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            display: block;
+            margin-bottom: 12px;
+        }
+        
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 12px 16px;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-default);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-size: 14px;
-            font-family: inherit;
-            transition: border-color 0.2s;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--mid);
+            color: var(--cream);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            padding: 12px 0;
+            outline: none;
         }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: var(--text-tertiary);
-        }
-
+        
         .form-group input:focus,
         .form-group textarea:focus {
-            outline: none;
             border-color: var(--copper);
         }
-
+        
         .form-group textarea {
-            resize: vertical;
+            resize: none;
             min-height: 100px;
         }
-
-        .btn-submit {
-            width: 100%;
-            padding: 14px 28px;
+        
+        .form-submit {
             background: var(--copper);
-            color: var(--bg-primary);
-            font-weight: 600;
-            font-size: 13px;
+            color: var(--black);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 24px 48px;
             border: none;
-            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.2s;
+            align-self: flex-start;
+            margin-top: 16px;
+            transition: background 0.2s;
         }
-
-        .btn-submit:hover {
-            background: var(--copper-light);
+        
+        .form-submit:hover {
+            background: var(--cream);
         }
-
-        /* ========== FOOTER ========== */
+        
+        .contact-map {
+            background: var(--dark);
+            position: relative;
+            min-height: 400px;
+        }
+        
+        .contact-map::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 30px,
+                    rgba(184, 115, 51, 0.05) 30px,
+                    rgba(184, 115, 51, 0.05) 31px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 30px,
+                    rgba(184, 115, 51, 0.05) 30px,
+                    rgba(184, 115, 51, 0.05) 31px
+                );
+        }
+        
+        .map-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .map-placeholder-icon {
+            width: 64px;
+            height: 64px;
+            border: 2px solid var(--copper);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+        
+        .map-placeholder-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--copper);
+        }
+        
+        .map-placeholder-text {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+        
+        /* FOOTER */
         footer {
-            padding: 32px 48px;
-            background: var(--bg-primary);
-            border-top: 1px solid var(--border-subtle);
+            background: var(--dark);
+            border-top: 2px solid var(--copper);
+            padding: 48px 32px;
         }
-
+        
         .footer-inner {
-            max-width: 1200px;
+            max-width: 1600px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
-        .footer-left {
-            display: flex;
-            align-items: center;
-            gap: 24px;
+        
+        .footer-logo {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 20px;
+            letter-spacing: 6px;
         }
-
-        .footer-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        
+        .footer-logo span {
+            color: var(--copper);
         }
-
-        .footer-brand .logo-mark {
-            width: 26px;
-            height: 26px;
+        
+        .footer-text {
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 10px;
+            letter-spacing: 1px;
+            color: var(--gray);
         }
-
-        .footer-brand span {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .footer-copy {
-            font-size: 12px;
-            color: var(--text-tertiary);
-        }
-
+        
         .footer-links {
             display: flex;
-            gap: 24px;
+            gap: 32px;
         }
-
+        
         .footer-links a {
-            font-size: 12px;
-            color: var(--text-tertiary);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1px;
+            color: var(--gray);
+            text-decoration: none;
             transition: color 0.2s;
         }
-
+        
         .footer-links a:hover {
-            color: var(--text-secondary);
+            color: var(--copper);
         }
-
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 1200px) {
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .stats-inner {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 32px;
-            }
-
-            .stats-item:nth-child(2)::after {
-                display: none;
-            }
+        
+        /* GRID OVERLAY EFFECT */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 60px,
+                    var(--cream) 60px,
+                    var(--cream) 61px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 60px,
+                    var(--cream) 60px,
+                    var(--cream) 61px
+                );
         }
-
+        
+        /* RESPONSIVE */
         @media (max-width: 1024px) {
             .hero {
                 grid-template-columns: 1fr;
             }
-
-            .hero-visual {
+            
+            .hero-right {
                 display: none;
             }
-
-            .hero-content {
-                padding: 100px 32px 80px;
-                max-width: 100%;
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
-
-            .about-inner,
-            .contact-inner {
+            
+            .about-inner {
                 grid-template-columns: 1fr;
-                gap: 64px;
             }
-
-            .about-card {
-                left: 24px;
-                bottom: -24px;
+            
+            .about-left {
+                border-right: none;
+                padding-right: 0;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                display: none;
             }
         }
-
-        @media (max-width: 768px) {
-            header {
-                padding: 0 24px;
-            }
-
-            nav {
-                position: fixed;
-                top: 64px;
-                left: 0;
-                right: 0;
-                background: var(--bg-primary);
-                flex-direction: column;
-                padding: 24px;
-                gap: 20px;
-                border-bottom: 1px solid var(--border-subtle);
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s;
-            }
-
-            nav.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .hero-content {
-                padding: 100px 24px 60px;
-            }
-
-            .hero-actions {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .logos-inner {
-                flex-direction: column;
-                gap: 24px;
-            }
-
-            .logos-grid {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 24px 32px;
-            }
-
-            .services,
-            .about,
-            .contact {
-                padding: 80px 24px;
-            }
-
+        
+        @media (max-width: 640px) {
             .services-grid {
                 grid-template-columns: 1fr;
             }
-
-            .stats {
-                padding: 64px 24px;
+            
+            .hero-title {
+                font-size: 36px;
             }
-
-            .stats-inner {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .stats-item:nth-child(2)::after {
-                display: none;
-            }
-
+            
             .about-features {
                 grid-template-columns: 1fr;
             }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-form-wrapper {
-                padding: 28px 24px;
-            }
-
+            
             .footer-inner {
                 flex-direction: column;
-                gap: 20px;
+                gap: 24px;
                 text-align: center;
             }
-
-            .footer-left {
-                flex-direction: column;
-                gap: 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .stats-inner {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-item::after {
-                display: none;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                gap: 20px;
-                left: 24px;
-                bottom: 32px;
+            
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <div class="grid-overlay"></div>
+    
     <header>
-        <a href="#" class="logo">
-            <div class="logo-mark">AT</div>
-            <span class="logo-text">ANTEK</span>
-        </a>
-        <nav id="navbar">
-            <a href="#hakkimizda">Hakkımızda</a>
-            <a href="#hizmetler">Hizmetler</a>
-            <a href="#urunler">Ürünler</a>
-            <a href="#iletisim" class="nav-cta">İletişime Geçin</a>
-        </nav>
-        <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="header-inner">
+            <div class="logo">
+                ANTEK
+                <span class="logo-sub">ENDÜSTRİYEL YEDEK PARÇALAR</span>
+            </div>
+            <nav>
+                <a href="#hizmetler">Hizmetler</a>
+                <a href="#hakkimizda">Hakkımızda</a>
+                <a href="#iletisim">İletişim</a>
+            </nav>
         </div>
     </header>
-
-    <!-- Hero -->
+    
     <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">Endüstriyel Makine Yedek Parçaları</div>
-            <h1 class="hero-title">
-                Endüstriyel spare parts<br>
-                <span class="accent">dış ticaret platformu</span>
-            </h1>
-            <p class="hero-desc">
-                Almanya bağlantımızla endüstriyel makine, etiket, dolum, paketleme ve PET hatları için yüksek performanslı yedek parçalar tedarik ediyoruz. İçecek, süt, ilaç ve paketleme endüstrilerine yönelik çözümler sunuyoruz.
-            </p>
-            <div class="hero-actions">
-                <a href="#iletisim" class="btn-primary">
-                    Teklif Alın
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <div class="hero-left">
+            <div class="hero-number">01</div>
+            <div class="hero-content">
+                <div class="hero-tag">Türkiye'nin lider tedarikçisi</div>
+                <h1 class="hero-title">
+                    Endüstriyel
+                    <span class="highlight">Makine</span>
+                    Yedek Parçaları
+                </h1>
+                <p class="hero-text">
+                    Farmasötik ve gıda sektörü için ithalat ve ihracat. 
+                    20 yılı aşkın deneyimle kesintisiz üretim için 
+                    güvenilir çözümler sunuyoruz.
+                </p>
+                <button class="hero-cta">
+                    Parça Talep Et
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
-                </a>
-                <a href="#hizmetler" class="btn-secondary">
-                    Hizmetlerimiz
-                </a>
+                </button>
             </div>
         </div>
-        <div class="hero-visual">
-            <div class="hero-image-wrapper">
-                <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1200&q=80" alt="Endüstriyel fabrika">
+        <div class="hero-right">
+            <div class="hero-image-block">
+                <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.5">
+                    <circle cx="100" cy="100" r="80" stroke="#b87333"/>
+                    <circle cx="100" cy="100" r="60" stroke="#b87333"/>
+                    <circle cx="100" cy="100" r="40" stroke="#b87333"/>
+                    <line x1="100" y1="20" x2="100" y2="180" stroke="#b87333"/>
+                    <line x1="20" y1="100" x2="180" y2="100" stroke="#b87333"/>
+                    <line x1="43" y1="43" x2="157" y2="157" stroke="#b87333"/>
+                    <line x1="157" y1="43" x2="43" y2="157" stroke="#b87333"/>
+                </svg>
             </div>
-            <div class="hero-overlay"></div>
             <div class="hero-stats">
                 <div class="hero-stat">
-                    <div class="hero-stat-value">15.000+</div>
-                    <div class="hero-stat-label">Parça Çeşidi</div>
+                    <div class="hero-stat-value">20+</div>
+                    <div class="hero-stat-label">Yıllık Deneyim</div>
                 </div>
                 <div class="hero-stat">
                     <div class="hero-stat-value">500+</div>
                     <div class="hero-stat-label">Müşteri</div>
                 </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">12</div>
+                    <div class="hero-stat-label">Ülke</div>
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- Logos -->
-    <section class="logos">
-        <div class="logos-inner">
-            <span class="logos-label">Müşterilerimiz</span>
-            <div class="logos-grid">
-                <span>Tuborg</span>
-                <span>Coca-Cola</span>
-                <span>Pepsi</span>
-                <span>Efes Pilsen</span>
-                <span>Carlsberg</span>
-                <span>Novartis</span>
-                <span>Pfizer</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
+    
+    <div class="section-divider"></div>
+    
     <section class="services" id="hizmetler">
-        <div class="services-inner">
-            <div class="section-header">
-                <div class="section-tag">Hizmetlerimiz</div>
-                <h2 class="section-title">Endüstriyel yedek parça çözümleri</h2>
-                <p class="section-desc">Makine hatlarınız için kauçuk, poliüretan ve paslanmaz metaller ile üretilen yüksek performanslı değişim parçaları. Türkiye, Almanya ve Kazakistan'daki müşterilerimize kesintisiz tedarik.</p>
+        <div class="services-header">
+            <div class="services-title-group">
+                <div class="services-tag">Hizmetlerimiz</div>
+                <h2 class="services-title">Ne Yapıyoruz?</h2>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-                        </svg>
-                    </div>
-                    <h3>Kauçuk & Poliüretan Parçalar</h3>
-                    <p>Endüstriyel makine hatları için dayanıklı kauçuk ve poliüretan değişim parçaları.</p>
+            <div class="services-year">
+                Kuruluş
+                <span>2003</span>
+            </div>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-item">
+                <div class="service-number">01</div>
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5">
+                        <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                    </svg>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                        </svg>
-                    </div>
-                    <h3>İthalat & İhracat</h3>
-                    <p>Almanya (Bremen) bağlantımız ile Avrupa'dan hızlı ve güvenilir tedarik.</p>
+                <h3 class="service-name">İthalat</h3>
+                <p class="service-desc">Avrupa ve Uzak Doğu'dan orijinal yedek parça tedarikı</p>
+            </div>
+            
+            <div class="service-item">
+                <div class="service-number">02</div>
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5">
+                        <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        <path d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
+                    </svg>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                        </svg>
-                    </div>
-                    <h3>Hızlı Teslimat</h3>
-                    <p>Acil talepleriniz için express teslimat seçenekleri sunuyoruz.</p>
+                <h3 class="service-name">İhracat</h3>
+                <p class="service-desc">Türkiye menşeli makine ve ekipmanların global pazara satışı</p>
+            </div>
+            
+            <div class="service-item">
+                <div class="service-number">03</div>
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5">
+                        <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
-                    </div>
-                    <h3>Paslanmaz Metaller</h3>
-                    <p>Gıda ve ilaç endüstrisi standartlarına uygun paslanmaz çelik parça tedariği.</p>
+                <h3 class="service-name">Teknik Destek</h3>
+                <p class="service-desc">Kurulum, bakım ve onarım hizmetleri</p>
+            </div>
+            
+            <div class="service-item">
+                <div class="service-number">04</div>
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5">
+                        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                    </svg>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-                        </svg>
-                    </div>
-                    <h3>Özel Sipariş</h3>
-                    <p>Standart dışı ve nadir bulunan parçalar için tedarik çözümleri.</p>
+                <h3 class="service-name">Danışmanlık</h3>
+                <p class="service-desc">Makine seçimi ve tedarik zinciri optimizasyonu</p>
+            </div>
+            
+            <div class="service-item">
+                <div class="service-number">05</div>
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5">
+                        <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                            <line x1="12" y1="22.08" x2="12" y2="12"/>
-                        </svg>
-                    </div>
-                    <h3>PET & Dolum Hatları</h3>
-                    <p>İçecek dolum ve PET şişe hatları için komple yedek parça desteği.</p>
+                <h3 class="service-name">Hızlı Teslimat</h3>
+                <p class="service-desc">Acil ihtiyaçlar için express kargo seçenekleri</p>
+            </div>
+            
+            <div class="service-item">
+                <div class="service-number">06</div>
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5">
+                        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    </svg>
                 </div>
+                <h3 class="service-name">Kalite Güvencesi</h3>
+                <p class="service-desc">Orijinal ve sertifikalı parça garantisi</p>
+            </div>
+            
+            <div class="service-item">
+                <div class="service-number">07</div>
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5">
+                        <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>
+                    </svg>
+                </div>
+                <h3 class="service-name">Lojistik</h3>
+                <p class="service-desc">Gümrük ve teslimat süreçlerinin yönetimi</p>
+            </div>
+            
+            <div class="service-item">
+                <div class="service-number">08</div>
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5">
+                        <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                </div>
+                <h3 class="service-name">Özel Çözümler</h3>
+                <p class="service-desc">Müşteriye özel tedarik ve üretim projeleri</p>
             </div>
         </div>
     </section>
-
-    <!-- Stats -->
-    <section class="stats">
-        <div class="stats-inner">
-            <div class="stats-item">
-                <div class="stats-number">25<span class="accent">+</span></div>
-                <div class="stats-label">Yıllık Deneyim</div>
-            </div>
-            <div class="stats-item">
-                <div class="stats-number">500<span class="accent">+</span></div>
-                <div class="stats-label">Müşteri</div>
-            </div>
-            <div class="stats-item">
-                <div class="stats-number">15K<span class="accent">+</span></div>
-                <div class="stats-label">Parça Çeşidi</div>
-            </div>
-            <div class="stats-item">
-                <div class="stats-number">3<span class="accent">+</span></div>
-                <div class="stats-label">Ülke / Şube</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About -->
+    
     <section class="about" id="hakkimizda">
         <div class="about-inner">
-            <div class="about-content">
-                <div class="section-tag">Hakkımızda</div>
-                <h2>An-Tek — Endüstriyel spare parts <span class="accent">uzmanı</span></h2>
-                <p>
-                    An-Tek Teknik Elektrik, Elektronik ve Makine Yedek Parça San. ve Tic. Ltd. Şti., endüstriyel makine, etiket, dolum, paketleme ve PET hatları için yüksek performanslı yedek parçalar üreten ve tedarik eden bir firmadır.
+            <div class="about-left">
+                <div class="about-tag">Hakkımızda</div>
+                <h2 class="about-title">20 Yıllık Deneyim, Güvenilir Ortaklıklar</h2>
+                <p class="about-text">
+                    ANTEK, 2003 yılından bu yana farmasötik ve gıda sektörüne yedek parça 
+                    tedarikinde Türkiye'nin önde gelen firmalarından biridir. Avrupa, 
+                    Uzak Doğu ve yerel üreticilerle kurduğumuz güçlü iş birlikleri sayesinde 
+                    müşterilerimize kesintisiz ve güvenilir hizmet sunuyoruz.
                 </p>
-                <p>
-                    Almanya (Bremen) bağlantımız ile Avrupa'dan kesintisiz tedarik sağlıyoruz. İçecek, süt, ilaç ve paketleme endüstrilerine yönelik çözümler sunuyoruz.
+                <p class="about-text">
+                    Amacımız, her zaman müşterilerimizin üretim kapasitelerini artırmak 
+                    ve downtime sürelerini minimuma indirmektir. Bu doğrultuda, sürekli 
+                    genişleyen tedarikçi ağımız ve deneyimli ekibimizle çalışıyoruz.
                 </p>
+                <div class="about-highlight">
+                    <p class="about-highlight-text">
+                        "Doğru parçayı, doğru zamanda, doğru fiyatla temin ediyoruz."
+                    </p>
+                </div>
+            </div>
+            <div class="about-right">
+                <div class="about-image-block"></div>
                 <div class="about-features">
                     <div class="about-feature">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                        İçecek Endüstrisi
+                        <div class="about-feature-title">Yıllık İşlem</div>
+                        <div class="about-feature-value">15M+ ₺</div>
                     </div>
                     <div class="about-feature">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                        Süt Ürünleri
+                        <div class="about-feature-title">Tedarikçi</div>
+                        <div class="about-feature-value">85+</div>
                     </div>
                     <div class="about-feature">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                        İlaç Üretimi
+                        <div class="about-feature-title">Parça Çeşidi</div>
+                        <div class="about-feature-value">10.000+</div>
                     </div>
                     <div class="about-feature">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                        Paketleme Hatları
+                        <div class="about-feature-title">Mutlu Müşteri</div>
+                        <div class="about-feature-value">%98</div>
                     </div>
-                </div>
-            </div>
-            <div class="about-visual">
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c7d8b0?w=800&q=80" alt="Endüstriyel parçalar">
-                </div>
-                <div class="about-card">
-                    <div class="about-card-value">3</div>
-                    <div class="about-card-label">Ülke / Şube</div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Contact -->
+    
     <section class="contact" id="iletisim">
-        <div class="contact-inner">
+        <div class="contact-header">
+            <div>
+                <div class="contact-tag">İletişim</div>
+                <h2 class="contact-title">Bize Ulaşın</h2>
+            </div>
             <div class="contact-info">
-                <div class="section-tag">İletişim</div>
-                <h2>Bize ulaşın, <span class="accent">çözüm</span> üretelim</h2>
-                <p>Endüstriyel makine yedek parça ihtiyaçlarınız için bizimle iletişime geçin. Uzman kadromuz size en uygun çözümü sunacaktır.</p>
-                <div class="contact-list">
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Türkiye (Merkez)</h4>
-                            <p>Osmaniye Mah. Fabrikalar Geçidi Sok. No:5<br>Bakırköy, İstanbul</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Almanya</h4>
-                            <p>Volkan Yildirim Industriebedarf<br>Bremen</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Kazakistan</h4>
-                            <p>Tan Technoservis<br>Almatı</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>E-posta</h4>
-                            <a href="mailto:info@antek.com.tr">info@antek.com.tr</a>
-                        </div>
-                    </div>
+                <div class="contact-info-item">
+                    <div class="contact-info-label">Telefon</div>
+                    <div class="contact-info-value">+90 (212) 555 00 00</div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-info-label">E-posta</div>
+                    <div class="contact-info-value">info@antek.com.tr</div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-info-label">Adres</div>
+                    <div class="contact-info-value">İstanbul, Türkiye</div>
                 </div>
             </div>
-            <div class="contact-form-wrapper">
-                <h3>Talep formu</h3>
-                <p>Yedek parça talepleriniz için formu doldurun.</p>
-                <form id="contactForm" onsubmit="handleSubmit(event)">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Ad Soyad</label>
-                            <input type="text" id="name" name="name" required placeholder="Adınız Soyadınız">
-                        </div>
-                        <div class="form-group">
-                            <label for="company">Firma</label>
-                            <input type="text" id="company" name="company" placeholder="Firma Adı">
-                        </div>
+        </div>
+        
+        <div class="contact-grid">
+            <form class="contact-form">
+                <div class="form-group">
+                    <label>Adınız Soyadınız</label>
+                    <input type="text" placeholder="Adınızı girin">
+                </div>
+                <div class="form-group">
+                    <label>E-posta</label>
+                    <input type="email" placeholder="E-posta adresiniz">
+                </div>
+                <div class="form-group">
+                    <label>Telefon</label>
+                    <input type="tel" placeholder="Telefon numaranız">
+                </div>
+                <div class="form-group">
+                    <label>Mesajınız</label>
+                    <textarea placeholder="Nasıl yardımcı olabiliriz?"></textarea>
+                </div>
+                <button type="submit" class="form-submit">Gönder</button>
+            </form>
+            
+            <div class="contact-map">
+                <div class="map-placeholder">
+                    <div class="map-placeholder-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">E-posta</label>
-                            <input type="email" id="email" name="email" required placeholder="ornek@firma.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Telefon</label>
-                            <input type="tel" id="phone" name="phone" placeholder="+90 5XX XXX XX XX">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Konu</label>
-                        <input type="text" id="subject" name="subject" required placeholder="Yedek parça talebi / Genel bilgi">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Mesajınız</label>
-                        <textarea id="message" name="message" required placeholder="Talep detaylarınızı yazın..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit">Talep Gönder</button>
-                </form>
+                    <div class="map-placeholder-text">Harita Konumu</div>
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
+    
     <footer>
         <div class="footer-inner">
-            <div class="footer-left">
-                <div class="footer-brand">
-                    <div class="logo-mark">AT</div>
-                    <span>ANTEK</span>
-                </div>
-                <div class="footer-copy">© 2026 An-Teknik Elektrik, Elektronik ve Makina Yedek Parça San. ve Tic. Ltd. Şti.</div>
-            </div>
+            <div class="footer-logo">ANTEK</div>
+            <div class="footer-text">© 2024 ANTEK Endüstriyel. Tüm hakları saklıdır.</div>
             <div class="footer-links">
-                <a href="#">Gizlilik Politikası</a>
-                <a href="#">Kullanım Koşulları</a>
+                <a href="#">Gizlilik</a>
+                <a href="#">Koşullar</a>
+                <a href="#">KVKK</a>
             </div>
         </div>
     </footer>
-
-    <script>
-        function toggleMenu() {
-            const navbar = document.getElementById('navbar');
-            const menuToggle = document.getElementById('menuToggle');
-            navbar.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        }
-
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('navbar').classList.remove('active');
-                document.getElementById('menuToggle').classList.remove('active');
-            });
-        });
-
-        function handleSubmit(event) {
-            event.preventDefault();
-            const form = event.target;
-            const button = form.querySelector('.btn-submit');
-            const originalText = button.textContent;
-            
-            button.textContent = 'Gönderiliyor...';
-            button.disabled = true;
-            
-            setTimeout(() => {
-                alert('Talebiniz başarıyla alındı. En kısa sürede sizinle iletişime geçeceğiz.');
-                form.reset();
-                button.textContent = originalText;
-                button.disabled = false;
-            }, 1000);
-        }
-    </script>
 </body>
 </html>
